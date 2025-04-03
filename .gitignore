@@ -1,0 +1,11 @@
+node_modules
+dist
+out
+annotated
+uploads
+.DS_Store
+.eslintcache
+*.log*
+
+# Project exclude paths
+/src/preload/index.d.ts
