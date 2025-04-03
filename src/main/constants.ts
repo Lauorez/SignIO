@@ -1,5 +1,5 @@
 import path from 'path'
 
-export const uploadsDir = path.join(process.cwd(), 'uploads')
-export const annotatedDir = path.join(process.cwd(), 'annotated')
-export const oldAnnotatedDir = path.join(process.cwd(), 'annotated', 'old')
+export const uploadsDir = path.resolve('uploads')
+export const annotatedDir = path.resolve('annotated')
+export const oldAnnotatedDir = path.resolve(annotatedDir, 'old')

@@ -4,6 +4,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
 import DrawingCanvas from './DrawingCanvas'
 import axios from 'axios'
+import loadingGif from '../assets/loading.gif'
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -14,6 +15,7 @@ const hostname: string = window.location.hostname
 
 const Annotate: React.FC = () => {
   const [file, setFile] = useState<string | undefined>(undefined)
+  const [loading, setLoading] = useState<boolean>(false)
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [scale] = useState<number>(1.5)
@@ -29,6 +31,7 @@ const Annotate: React.FC = () => {
 
   const submitAnnotation = (): void => {
     console.log('Submitting annotation:')
+    setLoading(true)
     axios
       .post(`http://${hostname}:8080/annotate`, {
         pdfFile: file,
@@ -36,7 +39,9 @@ const Annotate: React.FC = () => {
         canvasData: canvasData
       })
       .then((response) => {
+        setLoading(false)
         alert(response.data.message)
+        window.location.reload()
       })
       .catch((error) => {
         console.error('Error submitting annotation:', error)
@@ -91,7 +96,7 @@ const Annotate: React.FC = () => {
               onClick={submitAnnotation}
               className={"w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"}
             >
-              Submit
+              <span className="flex items-center justify-center">Submit {loading && <img src={loadingGif} alt="loading" className="w-6 h-6 ml-2"/>}</span>
             </button>
           </div>
         </div>

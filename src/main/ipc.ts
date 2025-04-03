@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import { dialog, ipcMain, shell } from 'electron'
 import log from 'electron-log'
-import { getIPAddress, moveAnnotatedToOldAnnotatedDir } from "./util";
+import { getIPAddress, moveAnnotatedToOldAnnotatedDir } from './util'
 import { annotatedDir, uploadsDir } from './constants'
 
 let currentFile: string | undefined = undefined

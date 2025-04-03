@@ -41,6 +41,9 @@ function WaitForSignature(): ReactElement {
     window.electron.ipcRenderer.send('sign-io', ['open', file])
     navigate('/')
   }
+  function handleSaveClick(): void {
+    window.electron.ipcRenderer.send('sign-io', ['save', file])
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -62,14 +65,24 @@ function WaitForSignature(): ReactElement {
             </span>
           </div>
         )}
-        <button
-          type="button"
-          className="w-full bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
-          disabled={!file}
-          onClick={handleDownloadClick}
-        >
-          Open Annotated File
-        </button>
+        <div className="flex items-center justify-center">
+          <button
+            type="button"
+            className="w-full bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+            disabled={!file}
+            onClick={handleDownloadClick}
+          >
+            Open
+          </button>
+          <button
+            type="button"
+            className="w-full bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+            disabled={!file}
+            onClick={handleSaveClick}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   )

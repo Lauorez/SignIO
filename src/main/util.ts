@@ -1,8 +1,8 @@
 import { networkInterfaces } from 'node:os'
 import fs from 'node:fs'
-import path from "path";
-import { annotatedDir } from "./constants";
-import log from "electron-log";
+import path from 'path'
+import { annotatedDir, oldAnnotatedDir } from "./constants";
+import log from 'electron-log'
 
 export const getIPAddress = (): string | null => {
   const nets = networkInterfaces()
@@ -45,7 +45,11 @@ export const moveAnnotatedToOldAnnotatedDir = (): void => {
       return
     }
     files.forEach((file) => {
-      if (fs.statSync(file).isDirectory()) fs.renameSync(file, path.join(annotatedDir, file))
+      if (!fs.statSync(path.resolve(annotatedDir, file)).isDirectory())
+        fs.renameSync(
+          path.resolve(annotatedDir, file),
+          getAvailableFileName(path.resolve(oldAnnotatedDir, file))
+        )
     })
   })
 }
