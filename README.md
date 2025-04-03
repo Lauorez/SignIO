@@ -1,4 +1,4 @@
-# ![SignIO](resources/icon.png | width=100) SignIO
+# <div style="display:flex;gap:15px;"><img src="resources/icon.svg" width="50">SignIO</div>
 ### A simpler way to sign your documents using your stylus
 
 ## Installation
