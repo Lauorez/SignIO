@@ -1,4 +1,4 @@
-# ![SignIO](resources/icon.png) SignIO
+# ![SignIO](resources/icon.png | width=100) SignIO
 ### A simpler way to sign your documents using your stylus
 
 ## Installation
