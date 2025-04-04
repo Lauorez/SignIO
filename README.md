@@ -1,7 +1,3 @@
----
-title: SignIO – PDF Annotation with Your Tablet
----
-
 # ✍️ SignIO
 
 **SignIO** lets you **instantly annotate PDFs from your computer on your tablet** using your stylus—while the file stays securely on your Windows PC.
