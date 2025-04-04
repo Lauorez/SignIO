@@ -1,53 +1,82 @@
-# <img align="left" src="resources/icon.svg" width="50"> SignIO
-### A simpler way to sign your documents using your stylus
+---
+title: SignIO – PDF Annotation with Your Tablet
+---
 
-## Installation
+# ✍️ SignIO
 
-Using the precompiled binaries, see Releases
+**SignIO** lets you **instantly annotate PDFs from your computer on your tablet** using your stylus—while the file stays securely on your Windows PC.
 
-### or
+> No installs on your tablet. No cloud. Just open your browser and go.
 
-### Build
+---
 
-```bash
-# For windows
-$ npm run build:win
+## 🚀 What Is It?
 
-# For macOS
-$ npm run build:mac
+Imagine you're working on your PC and want to mark up a PDF using your tablet and stylus. **SignIO** makes that super easy:
 
-# For Linux
-$ npm run build:linux
-```
+- 🖋️ Annotate with your stylus on iPad, Android tablets, or even phones
+- 🖥️ Runs on your **Windows PC**
+- 🌐 Access it from your **tablet browser**
+- 🔐 Files never leave your computer
+- 🆓 100% Free and open source
 
-## Usage
+---
 
-Select a PDF file from your PC, open the displayed local network address in your tablet's browser, sign, press submit and done!
+## 🎬 How It Works
 
+1. Download and launch SignIO on your Windows PC
+2. A local web address will appear
+3. Open that link in your tablet’s browser (make sure both devices are on the same Wi-Fi)
+4. Start annotating with your stylus!
 
-## Contribution
+No accounts. No sync. No setup headaches.
 
-### Install
+---
 
-```bash
-$ npm install
-```
+## 📸 Demo
 
-### Development
+> _(Insert a short GIF or video here showing the workflow, coming soon)_
+> Select a PDF → Grab your tablet → Annotate smoothly in your browser → Save or Open the annotated file on your computer
 
-```bash
-$ npm run dev
-```
+---
 
-### Build
+## 🔽 Download
 
-```bash
-# For windows
-$ npm run build:win
+👉 [Get the latest version on GitHub](https://github.com/Lauorez/SignIO/releases)
 
-# For macOS
-$ npm run build:mac
+---
 
-# For Linux
-$ npm run build:linux
-```
+## ❓ Frequently Asked Questions
+
+**Does it work on iPad or Android tablets?**
+Yes! If it has a browser and a stylus, it works.
+
+**Is anything uploaded to the internet?**
+No. Your PDFs never leave your device.
+
+**Can I use this offline?**
+Yes, as long as your PC and tablet are connected to the same Wi-Fi or hotspot.
+
+---
+
+## 💡 Coming Soon
+
+- Undo/Redo
+- History
+- Native iOS version (€1, planned)
+
+---
+
+## ❤️ Support the Project
+
+If you like SignIO and want to support future features:
+
+**[Support me via PayPal](https://paypal.me/lauorez)**
+
+Or simply [⭐ star it on GitHub](https://github.com/Lauorez/SignIO)
+
+---
+
+## 📜 License
+
+MIT License · Made with 💻 + ✍️
