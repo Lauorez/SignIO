@@ -1,33 +1,22 @@
-import { networkInterfaces } from 'node:os'
 import fs from 'node:fs'
 import path from 'path'
-import { annotatedDir, oldAnnotatedDir } from "./constants";
+import { annotatedDir, oldAnnotatedDir } from './constants'
 import log from 'electron-log'
+import * as os from 'node:os'
+import { NetworkInterfaceInfo } from 'node:os'
 
-export const getIPAddress = (): string | null => {
-  const nets = networkInterfaces()
-  const results: { [key: string]: string[] } = {}
-  Object.keys(nets).forEach((name) => {
-    const interfaces = nets[name]
-    if (interfaces) {
-      interfaces.forEach((net) => {
-        if (net.family === 'IPv4' && !net.internal) {
-          if (!results[name]) {
-            results[name] = []
-          }
-          results[name].push(net.address)
-        }
-      })
-    }
-  })
-  const nicNames = Object.keys(results)
-  if (nicNames.length > 0) {
-    const firstNICAddresses = results[nicNames[0]]
-    if (firstNICAddresses && firstNICAddresses.length > 0) {
-      return firstNICAddresses[0]
+export const getIPAddress = (): string | undefined => {
+  const interfaces: NodeJS.Dict<NetworkInterfaceInfo[]> = os.networkInterfaces()
+  for (const interfaceName of Object.keys(interfaces)) {
+    const networkInterface = interfaces[interfaceName]
+    if (!networkInterface) continue
+    for (const net of networkInterface) {
+      if (net.family === 'IPv4')
+        if (!interfaceName.includes('VMware') && !interfaceName.includes('Loopback'))
+          return net.address
     }
   }
-  return null
+  return undefined
 }
 
 export const getAvailableFileName = (filename: string): string => {

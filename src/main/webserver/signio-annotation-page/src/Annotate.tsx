@@ -86,12 +86,30 @@ const Annotate: React.FC = () => {
               >
                 ➡️
               </button>
+              <button
+                onClick={submitAnnotation}
+                className={"w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"}
+              >
+                <span className="flex items-center justify-center">Submit {loading && <img src={loadingGif} alt="loading" className="w-6 h-6 ml-2"/>}</span>
+              </button>
             </div>
             <Page key={`page_${pageNumber}`} pageNumber={pageNumber} scale={scale}>
               <DrawingCanvas onCanvasChange={handleCanvasChange} />
             </Page>
           </Document>
           <div className="flex justify-center">
+            <button
+              onClick={() => setPageNumber(Math.max(1, pageNumber - 1))}
+              className="w-min bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+            >
+              ⬅️
+            </button>
+            <button
+              onClick={() => setPageNumber(Math.min(numPages, pageNumber + 1))}
+              className="w-min bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+            >
+              ➡️
+            </button>
             <button
               onClick={submitAnnotation}
               className={"w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"}

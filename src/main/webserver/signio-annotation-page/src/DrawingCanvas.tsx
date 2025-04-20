@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-const DrawingCanvas: React.FC<DrawingCanvasProps> = ({ onCanvasChange }) => {
+const DrawingCanvas: React.FC<DrawingCanvasProps> = (props: DrawingCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const lastXRef = useRef<number>(0);
@@ -96,7 +96,7 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({ onCanvasChange }) => {
     e.preventDefault();
     setIsDrawing(false);
     if (canvasRef.current) {
-      onCanvasChange(canvasRef.current.toDataURL("image/png"));
+      props.onCanvasChange(canvasRef.current.toDataURL("image/png", 1));
     }
   };
 

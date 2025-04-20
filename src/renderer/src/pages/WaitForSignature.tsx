@@ -2,6 +2,8 @@ import { ReactElement, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import log from 'electron-log'
 import loading from '../assets/loading.gif'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowUpRightFromSquare, faSave } from '@fortawesome/free-solid-svg-icons'
 
 function WaitForSignature(): ReactElement {
   const [file, setFile] = useState<string | undefined>(undefined)
@@ -39,10 +41,14 @@ function WaitForSignature(): ReactElement {
 
   function handleDownloadClick(): void {
     window.electron.ipcRenderer.send('sign-io', ['open', file])
-    navigate('/')
   }
+
   function handleSaveClick(): void {
     window.electron.ipcRenderer.send('sign-io', ['save', file])
+  }
+
+  function handleBackClick(): void {
+    navigate('/')
   }
 
   return (
@@ -70,20 +76,27 @@ function WaitForSignature(): ReactElement {
             type="button"
             className="w-full bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
             disabled={!file}
-            onClick={handleDownloadClick}
+            onClick={handleSaveClick}
           >
-            Open
+            <FontAwesomeIcon icon={faSave} /> Save
           </button>
           <button
             type="button"
             className="w-full bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
             disabled={!file}
-            onClick={handleSaveClick}
+            onClick={handleDownloadClick}
           >
-            Save
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Open
           </button>
         </div>
       </div>
+      <button
+        type="button"
+        onClick={handleBackClick}
+        className="w-min absolute top-3 left-3 bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+      >
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
     </div>
   )
 }

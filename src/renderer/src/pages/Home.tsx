@@ -1,6 +1,8 @@
 import { FormEvent, ReactElement, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import log from 'electron-log'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClockRotateLeft, faUpload } from "@fortawesome/free-solid-svg-icons";
 
 function Home(): ReactElement {
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined)
@@ -32,6 +34,10 @@ function Home(): ReactElement {
     })
   }
 
+  const handleHistoryClick = (): void => {
+    navigate({ pathname: '/history' })
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -55,10 +61,17 @@ function Home(): ReactElement {
             type="submit"
             className="w-full hover:bg-blue-700 bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
           >
-            Upload
+            <FontAwesomeIcon icon={faUpload} /> Upload
           </button>
         </form>
       </div>
+      <button
+        type="button"
+        onClick={handleHistoryClick}
+        className="w-min absolute top-3 left-3 bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700 disabled:hover:bg-gray-600 text-white font-bold py-2 px-4 rounded enabled:cursor-pointer overflow-hidden transition-all duration-200 active:bg-blue-400"
+      >
+        <FontAwesomeIcon icon={faClockRotateLeft} />
+      </button>
     </div>
   )
 }

@@ -46,8 +46,22 @@ ipcMain.on('sign-io', async (event, arg) => {
       break
     }
     case 'open': {
+      console.log(`${annotatedDir}/${arg[1]}`)
       await shell.openPath(`${annotatedDir}/${arg[1]}`)
       break
+    }
+    case 'save': {
+      dialog
+        .showSaveDialog({
+          title: 'Save File',
+          nameFieldLabel: arg[1],
+          filters: [{ name: 'Portable Document Format (PDF)', extensions: ['pdf'] }]
+        })
+        .then((value) => {
+          if (value) {
+            fs.cpSync(`${annotatedDir}/${arg[1]}`, value.filePath)
+          }
+        })
     }
     case 'is-annotated': {
       fs.readdir(annotatedDir, (err, files) => {

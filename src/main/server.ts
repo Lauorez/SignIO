@@ -5,11 +5,17 @@ import fs from 'fs'
 import log from 'electron-log'
 import cors from 'cors'
 import { is } from '@electron-toolkit/utils'
+import { Server } from 'node:http'
+import { getIPAddress } from './util'
 
 const server = express()
 const PORT = 8080
 
 log.initialize()
+
+export let httpServer: Server | undefined = undefined
+
+getIPAddress()
 
 export default async function startServer(): Promise<void> {
   server.use(cors())
@@ -138,7 +144,7 @@ export default async function startServer(): Promise<void> {
     })
   })
 
-  server.listen(PORT, () => {
+  httpServer = server.listen(PORT, () => {
     log.info(`Server is running on port ${PORT}`)
   })
 }
